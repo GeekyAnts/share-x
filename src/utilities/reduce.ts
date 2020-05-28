@@ -26,7 +26,7 @@ const reduce = (oldState: IValue, action: IAction): IValue => {
     oldState.blocks[i] = block;
   }
 
-  return oldState;
+  return JSON.parse(JSON.stringify(oldState));
 };
 
 export default reduce;
