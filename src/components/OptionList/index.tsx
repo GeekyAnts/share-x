@@ -8,10 +8,11 @@ import IndividualListItem from '../IndividualListItem';
 
 interface IProps {
   blocks: Array<IBlock>;
+  searchRenderer: (option: any) => string;
   onAction: (action: IAction) => void;
 }
 
-const OptionList: React.FC<IProps> = ({ blocks, onAction }) => {
+const OptionList: React.FC<IProps> = ({ blocks, onAction, searchRenderer }) => {
   return (
     <ListGroup>
       {blocks.map((block, index) => {
@@ -19,6 +20,7 @@ const OptionList: React.FC<IProps> = ({ blocks, onAction }) => {
           if (index === 0) {
             return (
               <SearchListItem
+                searchRenderer={searchRenderer}
                 onAction={onAction}
                 key={block.id}
                 block={block}
@@ -27,6 +29,7 @@ const OptionList: React.FC<IProps> = ({ blocks, onAction }) => {
           } else if (index === blocks.length - 1) {
             return (
               <SearchListItem
+                searchRenderer={searchRenderer}
                 onAction={onAction}
                 key={block.id}
                 block={block}
@@ -35,6 +38,7 @@ const OptionList: React.FC<IProps> = ({ blocks, onAction }) => {
           } else {
             return (
               <SearchListItem
+                searchRenderer={searchRenderer}
                 onAction={onAction}
                 key={block.id}
                 block={block}

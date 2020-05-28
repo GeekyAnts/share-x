@@ -12,5 +12,5 @@ export default interface IBlock {
     selected?: Array<any>;
   };
   inviteLink: boolean;
-  searchRecords: Array<any>;
+  searchRecords?: Array<any>;
 }

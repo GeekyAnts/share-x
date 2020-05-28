@@ -8,9 +8,15 @@ interface IProps {
   value: IValue;
   show: boolean;
   onAction: (action: IAction) => void;
+  searchRenderer?: (option: any) => string;
 }
 
-const ShareDialog: React.FC<IProps> = ({ value, show, onAction }) => {
+const ShareDialog: React.FC<IProps> = ({
+  value,
+  show,
+  onAction,
+  searchRenderer = (option: any) => `${option}`,
+}) => {
   const filteredBlocks = value.blocks.filter(
     block =>
       block.type === 'search' ||
@@ -23,7 +29,11 @@ const ShareDialog: React.FC<IProps> = ({ value, show, onAction }) => {
       {show ? (
         <Modal.Dialog style={{ minWidth: '620px' }}>
           <Modal.Body className="px-4 py-3">
-            <OptionList onAction={onAction} blocks={filteredBlocks} />
+            <OptionList
+              onAction={onAction}
+              blocks={filteredBlocks}
+              searchRenderer={searchRenderer}
+            />
           </Modal.Body>
         </Modal.Dialog>
       ) : null}

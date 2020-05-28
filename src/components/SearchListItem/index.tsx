@@ -8,6 +8,7 @@ import IAction from '../../types/IAction';
 interface IProps {
   block: IBlock;
   onAction: (action: IAction) => void;
+  searchRenderer: (option: any) => string;
   noUpBorder?: boolean;
   noDownBorder?: boolean;
 }
@@ -15,6 +16,7 @@ interface IProps {
 const SearchListItem: React.FC<IProps> = ({
   block,
   onAction,
+  searchRenderer,
   noUpBorder = false,
   noDownBorder = false,
 }) => {
@@ -47,11 +49,11 @@ const SearchListItem: React.FC<IProps> = ({
           {block.value && block.value.selected ? (
             <Typeahead
               id={'typeahead-' + block.id}
-              // labelKey={option => `${option.email}`}
+              labelKey={searchRenderer}
               selected={block.value.selected}
               onChange={selected => dispatchSelectAction(selected)}
               multiple
-              options={block.searchRecords}
+              options={block.searchRecords ? block.searchRecords : []}
               placeholder="Enter emails"
             />
           ) : null}

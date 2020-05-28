@@ -30,10 +30,16 @@ const defaultValue: IValue = {
       ],
       value: {
         access: 'Read',
-        selected: ['rest'],
+        selected: [],
       },
       inviteLink: true,
-      searchRecords: ['test', 'test1', 'tear2'],
+      searchRecords: [
+        { firstName: 'Art', lastName: 'Blakey' },
+        { firstName: 'Jimmy', lastName: 'Cobb' },
+        { firstName: 'Elvin', lastName: 'Jones' },
+        { firstName: 'Max', lastName: 'Roach' },
+        { firstName: 'Tony', lastName: 'Williams' },
+      ],
     },
     {
       id: '123123',
@@ -142,13 +148,20 @@ const defaultValue: IValue = {
 const App = () => {
   const [value, setValue] = React.useState(defaultValue);
 
+  const searchRenderer = (option: any) => `${option.firstName}`;
+
   const onAction = (action: IAction) => {
     setValue(reduce(value, action));
   };
 
   return (
     <div>
-      <ShareDialog show={true} value={value} onAction={onAction} />
+      <ShareDialog
+        show={true}
+        value={value}
+        onAction={onAction}
+        searchRenderer={searchRenderer}
+      />
     </div>
   );
 };
