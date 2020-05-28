@@ -31,7 +31,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "sharedialog",
+  "name": "@geekyants/share-x",
   "author": "adityaj",
   "module": "dist/sharedialog.esm.js",
   "devDependencies": {
@@ -52,5 +52,22 @@
     "@types/react-bootstrap-typeahead": "^3.4.6",
     "components": "^0.1.0",
     "react-bootstrap-typeahead": "^5.0.0-rc.1"
-  }
+  },
+  "description": "A Share Dialog API with customisation options.",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeekyAnts/share-x.git"
+  },
+  "keywords": [
+    "share",
+    "share-dialog"
+  ],
+  "bugs": {
+    "url": "https://github.com/GeekyAnts/share-x/issues"
+  },
+  "homepage": "https://github.com/GeekyAnts/share-x#readme"
 }
