@@ -1,25 +1,18 @@
 import * as React from 'react';
 import { Modal } from 'react-bootstrap';
 import OptionList from './components/OptionList';
+import IValue from './types/IValue';
 
-const ShareDialog = () => {
-  const [selected, setSelected] = React.useState([]);
+interface IProps {
+  value: IValue;
+}
 
-  const options = [
-    { email: 'adityaj@geekyants.com' },
-    { email: 'adityasharanjamuar@gmail.com' },
-    { email: 'adityajamuar@yahoo.com' },
-  ];
-
+const ShareDialog: React.FC<IProps> = ({ value }) => {
   return (
     <>
       <Modal.Dialog style={{ minWidth: '620px' }}>
         <Modal.Body className="px-4 py-3">
-          <OptionList
-            options={options}
-            selected={selected}
-            setSelected={setSelected}
-          />
+          <OptionList blocks={value.blocks} />
         </Modal.Body>
       </Modal.Dialog>
     </>

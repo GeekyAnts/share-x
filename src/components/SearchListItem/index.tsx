@@ -1,0 +1,57 @@
+import React from 'react';
+import { ListGroup, Form, Row, Col } from 'react-bootstrap';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
+import IBlock from '../../types/IBlock';
+
+interface IProps {
+  block: IBlock;
+  noUpBorder?: boolean;
+  noDownBorder?: boolean;
+}
+
+const SearchListItem: React.FC<IProps> = ({
+  block,
+  noUpBorder = false,
+  noDownBorder = false,
+}) => {
+  let className = 'border-left-0 border-right-0 px-0 ';
+  if (!noUpBorder) {
+    className += 'border-top-0 pt-2 pb-0';
+  } else if (!noDownBorder) {
+    className += 'border-bottom-0 pt-4';
+  } else {
+    className += ' py-4';
+  }
+
+  const dispatchSelectAction = (selected: any) => {
+    // TODO: Create action here
+    console.log('^^^ selected', selected);
+  };
+
+  return (
+    <ListGroup.Item className={className}>
+      <Form.Group as={Row}>
+        <Form.Label column md="1" sm="1">
+          <strong>{block.caption}</strong>
+        </Form.Label>
+        <Col md="11" sm="11" className="pl-0">
+          {console.log(block)}
+          {block.value && block.value.selected ? (
+            <Typeahead
+              id={'typeahead-' + block.id}
+              // labelKey={option => `${option.email}`}
+              selected={block.value.selected}
+              onChange={selected => dispatchSelectAction(selected)}
+              multiple
+              options={block.searchRecords}
+              placeholder="Enter emails"
+            />
+          ) : null}
+        </Col>
+      </Form.Group>
+    </ListGroup.Item>
+  );
+};
+
+export default SearchListItem;
