@@ -3,15 +3,18 @@ import { ListGroup, Form, Row, Col } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import IBlock from '../../types/IBlock';
+import IAction from '../../types/IAction';
 
 interface IProps {
   block: IBlock;
+  onAction: (action: IAction) => void;
   noUpBorder?: boolean;
   noDownBorder?: boolean;
 }
 
 const SearchListItem: React.FC<IProps> = ({
   block,
+  onAction,
   noUpBorder = false,
   noDownBorder = false,
 }) => {
@@ -25,8 +28,13 @@ const SearchListItem: React.FC<IProps> = ({
   }
 
   const dispatchSelectAction = (selected: any) => {
-    // TODO: Create action here
-    console.log('^^^ selected', selected);
+    onAction({
+      type: 'CHANGE_SELECTION',
+      payload: {
+        blockId: block.id,
+        value: selected,
+      },
+    });
   };
 
   return (
@@ -36,7 +44,6 @@ const SearchListItem: React.FC<IProps> = ({
           <strong>{block.caption}</strong>
         </Form.Label>
         <Col md="11" sm="11" className="pl-0">
-          {console.log(block)}
           {block.value && block.value.selected ? (
             <Typeahead
               id={'typeahead-' + block.id}

@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import ShareDialog from '../.';
 import IValue from '../dist/types/IValue';
+import IAction from '../dist/types/IAction';
 
 const App = () => {
   const value: IValue = {
@@ -139,9 +140,13 @@ const App = () => {
     ],
   };
 
+  const onAction = (action: IAction) => {
+    console.log('^^^ action', action);
+  };
+
   return (
     <div>
-      <ShareDialog show={true} value={value} />
+      <ShareDialog show={true} value={value} onAction={onAction} />
     </div>
   );
 };

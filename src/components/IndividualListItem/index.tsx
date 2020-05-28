@@ -4,15 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import IBlock from '../../types/IBlock';
 import IDropdownOptions from '../../types/IDropdownOptions';
+import IAction from 'types/IAction';
 
 interface IProps {
   block: IBlock;
+  onAction: (action: IAction) => void;
   noUpBorder?: boolean;
   noDownBorder?: boolean;
 }
 
 const IndividualListItem: React.FC<IProps> = ({
   block,
+  onAction,
   noUpBorder = false,
   noDownBorder = false,
 }) => {
@@ -24,6 +27,25 @@ const IndividualListItem: React.FC<IProps> = ({
   } else {
     className += ' py-4';
   }
+
+  const dispatchDropdownAction = (value: string) => {
+    onAction({
+      type: 'DROPDOWN_CHANGE',
+      payload: {
+        blockId: block.id,
+        value: value,
+      },
+    });
+  };
+
+  const dispatchCopyLinkAction = () => {
+    onAction({
+      type: 'COPY_LINK',
+      payload: {
+        blockId: block.id,
+      },
+    });
+  };
 
   return (
     <ListGroup.Item className={className}>
@@ -48,7 +70,10 @@ const IndividualListItem: React.FC<IProps> = ({
             >
               {block.accessTypes.map((accessType: IDropdownOptions) => {
                 return (
-                  <Dropdown.Item key={accessType.key}>
+                  <Dropdown.Item
+                    key={accessType.key}
+                    onClick={() => dispatchDropdownAction(accessType.value)}
+                  >
                     {accessType.value}
                   </Dropdown.Item>
                 );
@@ -58,7 +83,11 @@ const IndividualListItem: React.FC<IProps> = ({
         </Col>
         <Col md="3" sm="3" className="d-flex justify-content-end">
           {block.inviteLink ? (
-            <Button variant="primary" size="sm">
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => dispatchCopyLinkAction()}
+            >
               Copy invite link
             </Button>
           ) : null}
