@@ -141,7 +141,7 @@ const App = () => {
 
   return (
     <div>
-      <ShareDialog value={value} />
+      <ShareDialog show={true} value={value} />
     </div>
   );
 };

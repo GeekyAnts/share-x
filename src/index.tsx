@@ -5,16 +5,20 @@ import IValue from './types/IValue';
 
 interface IProps {
   value: IValue;
+  show: boolean;
+  // onAction: ()
 }
 
-const ShareDialog: React.FC<IProps> = ({ value }) => {
+const ShareDialog: React.FC<IProps> = ({ value, show }) => {
   return (
     <>
-      <Modal.Dialog style={{ minWidth: '620px' }}>
-        <Modal.Body className="px-4 py-3">
-          <OptionList blocks={value.blocks} />
-        </Modal.Body>
-      </Modal.Dialog>
+      {show ? (
+        <Modal.Dialog style={{ minWidth: '620px' }}>
+          <Modal.Body className="px-4 py-3">
+            <OptionList blocks={value.blocks} />
+          </Modal.Body>
+        </Modal.Dialog>
+      ) : null}
     </>
   );
 };
