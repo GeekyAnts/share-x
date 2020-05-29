@@ -94,30 +94,6 @@ const defaultValue: IValue = {
       },
     },
     {
-      id: 3,
-      type: 'sharedWith',
-      icon: '',
-      caption: 'Random name 1',
-      accessTypes: [
-        {
-          key: 'read',
-          value: 'Read',
-        },
-        {
-          key: 'can_edit',
-          value: 'Can edit',
-        },
-        {
-          key: 'no_access',
-          value: 'No access',
-        },
-      ],
-      inviteLink: false,
-      value: {
-        access: 'Read',
-      },
-    },
-    {
       id: 5,
       type: 'sharedWith',
       icon: '',
@@ -147,6 +123,8 @@ const defaultValue: IValue = {
 
 const App = () => {
   const [value, setValue] = React.useState(defaultValue);
+
+  console.log('^^^ value', value);
 
   const searchRenderer = (option: any) => `${option.firstName}`;
 
