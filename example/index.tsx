@@ -40,6 +40,7 @@ const defaultValue: IValue = {
         { firstName: 'Max', lastName: 'Roach' },
         { firstName: 'Tony', lastName: 'Williams' },
       ],
+      filterBy: ['firstName', 'lastName'],
     },
     {
       id: '123123',
@@ -123,10 +124,10 @@ const defaultValue: IValue = {
 
 const App = () => {
   const [value, setValue] = React.useState(defaultValue);
+  const [show, setShow] = React.useState(false);
 
-  console.log('^^^ value', value);
-
-  const searchRenderer = (option: any) => `${option.firstName}`;
+  const searchRenderer = (option: any) =>
+    `${option.firstName} (${option.lastName})`;
 
   const onAction = (action: IAction) => {
     setValue(reduce(value, action));
@@ -134,8 +135,15 @@ const App = () => {
 
   return (
     <div>
+      <button
+        onClick={() => {
+          setShow(!show);
+        }}
+      >
+        Show
+      </button>
       <ShareDialog
-        show={true}
+        show={show}
         value={value}
         onAction={onAction}
         searchRenderer={searchRenderer}

@@ -52,6 +52,7 @@ const SearchListItem: React.FC<IProps> = ({
               labelKey={searchRenderer}
               selected={block.value.selected}
               onChange={selected => dispatchSelectAction(selected)}
+              filterBy={block.filterBy ? block.filterBy : []}
               multiple
               options={block.searchRecords ? block.searchRecords : []}
               placeholder="Enter emails"

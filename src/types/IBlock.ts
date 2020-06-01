@@ -13,4 +13,5 @@ export default interface IBlock {
   };
   inviteLink: boolean;
   searchRecords?: Array<any>;
+  filterBy?: Array<string>;
 }

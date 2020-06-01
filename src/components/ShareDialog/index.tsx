@@ -26,8 +26,8 @@ const ShareDialog: React.FC<IProps> = ({
 
   return (
     <>
-      {show ? (
-        <Modal.Dialog style={{ minWidth: '620px' }}>
+      <Modal show={show} style={{ minWidth: '620px' }}>
+        <Modal.Dialog className="my-0">
           <Modal.Body className="px-4 py-3">
             <OptionList
               onAction={onAction}
@@ -36,7 +36,7 @@ const ShareDialog: React.FC<IProps> = ({
             />
           </Modal.Body>
         </Modal.Dialog>
-      ) : null}
+      </Modal>
     </>
   );
 };
