@@ -146,6 +146,7 @@ const App = () => {
       <ShareDialog
         show={show}
         value={value}
+        onHide={() => setShow(!show)}
         onAction={onAction}
         searchRenderer={searchRenderer}
       />
