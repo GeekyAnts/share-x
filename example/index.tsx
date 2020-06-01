@@ -41,6 +41,7 @@ const defaultValue: IValue = {
         { firstName: 'Tony', lastName: 'Williams' },
       ],
       filterBy: ['firstName', 'lastName'],
+      buttonText: 'Invite',
     },
     {
       id: '123123',

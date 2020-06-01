@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup, Form, Row, Col } from 'react-bootstrap';
+import { ListGroup, Form, Row, Col, Button } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import IBlock from '../../types/IBlock';
@@ -39,13 +39,22 @@ const SearchListItem: React.FC<IProps> = ({
     });
   };
 
+  const dispatchButtonClick = () => {
+    onAction({
+      type: 'BUTTON_CLICK',
+      payload: {
+        blockId: block.id,
+      },
+    });
+  };
+
   return (
     <ListGroup.Item className={className}>
       <Form.Group as={Row}>
         <Form.Label column md="1" sm="1">
           <strong>{block.caption}</strong>
         </Form.Label>
-        <Col md="11" sm="11" className="pl-0">
+        <Col md="8" sm="8" className="pl-0">
           {block.value && block.value.selected ? (
             <Typeahead
               id={'typeahead-' + block.id}
@@ -58,6 +67,11 @@ const SearchListItem: React.FC<IProps> = ({
               placeholder="Enter emails"
             />
           ) : null}
+        </Col>
+        <Col md="3" sm="3">
+          <Button onClick={() => dispatchButtonClick()} block>
+            {block.buttonText ? block.buttonText : ''}
+          </Button>
         </Col>
       </Form.Group>
     </ListGroup.Item>
