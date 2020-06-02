@@ -19,12 +19,15 @@ const ShareDialog: React.FC<IProps> = ({
   onHide,
   searchRenderer = (option: any) => `${option}`,
 }) => {
-  const filteredBlocks = value.blocks.filter(
-    block =>
-      block.type === 'search' ||
-      block.type === 'group' ||
-      block.type === 'sharedWith'
-  );
+  const filteredBlocks =
+    value && value.blocks
+      ? value.blocks.filter(
+          block =>
+            block.type === 'search' ||
+            block.type === 'group' ||
+            block.type === 'sharedWith'
+        )
+      : [];
 
   return (
     <>
