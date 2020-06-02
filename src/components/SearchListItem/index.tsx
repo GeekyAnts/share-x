@@ -5,6 +5,7 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 import IBlock from '../../types/IBlock';
 import IAction from '../../types/IAction';
 import IDropdownOptions from '../../types/IDropdownOptions';
+import getDropdownValue from '../../utilities/getDropdownValue';
 
 interface IProps {
   block: IBlock;
@@ -89,7 +90,7 @@ const SearchListItem: React.FC<IProps> = ({
               variant="link"
               id="link-access-dropdown dropdown-toggle-button"
             >
-              {block.value.access}
+              {getDropdownValue(block, block.value.access)}
             </Dropdown.Toggle>
             <Dropdown.Menu
               className="border-0"
