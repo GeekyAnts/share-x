@@ -20,7 +20,7 @@ const ShareDialog: React.FC<IProps> = ({
   searchRenderer = (option: any) => `${option}`,
 }) => {
   const filteredBlocks =
-    value && value.blocks
+    value && value.blocks && Array.isArray(value.blocks)
       ? value.blocks.filter(
           block =>
             block.type === 'search' ||

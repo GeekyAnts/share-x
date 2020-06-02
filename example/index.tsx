@@ -46,7 +46,7 @@ const defaultValue: IValue = {
     {
       id: '123123',
       type: 'group',
-      icon: '',
+      icon: 'globe',
       caption: 'Invite link to Board and Team',
       description: '',
 
@@ -72,7 +72,7 @@ const defaultValue: IValue = {
     {
       id: 2,
       type: 'sharedWith',
-      icon: '',
+      icon: 'userFriends',
       caption: 'Random name 2',
       description: '',
 
@@ -98,7 +98,7 @@ const defaultValue: IValue = {
     {
       id: 5,
       type: 'sharedWith',
-      icon: '',
+      icon: 'userFriends',
       caption: 'Aditya Jamuar',
       description: '',
       accessTypes: [
