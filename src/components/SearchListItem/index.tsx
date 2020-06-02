@@ -1,9 +1,10 @@
 import React from 'react';
-import { ListGroup, Form, Row, Col, Button } from 'react-bootstrap';
+import { ListGroup, Form, Row, Col, Button, Dropdown } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import IBlock from '../../types/IBlock';
 import IAction from '../../types/IAction';
+import IDropdownOptions from '../../types/IDropdownOptions';
 
 interface IProps {
   block: IBlock;
@@ -44,7 +45,20 @@ const SearchListItem: React.FC<IProps> = ({
       type: 'BUTTON_CLICK',
       payload: {
         blockId: block.id,
-        value: block.value.selected,
+        value: {
+          selected: block.value.selected,
+          access: block.value.access,
+        },
+      },
+    });
+  };
+
+  const dispatchDropdownAction = (value: any) => {
+    onAction({
+      type: 'DROPDOWN_CHANGE',
+      payload: {
+        blockId: block.id,
+        value,
       },
     });
   };
@@ -55,7 +69,7 @@ const SearchListItem: React.FC<IProps> = ({
         <Form.Label column md="1" sm="1">
           <strong>{block.caption}</strong>
         </Form.Label>
-        <Col md="8" sm="8" className="pl-0">
+        <Col md="5" sm="5" className="px-0">
           {block.value && block.value.selected ? (
             <Typeahead
               id={'typeahead-' + block.id}
@@ -68,6 +82,33 @@ const SearchListItem: React.FC<IProps> = ({
               placeholder="Enter emails"
             />
           ) : null}
+        </Col>
+        <Col md="3" sm="3">
+          <Dropdown>
+            <Dropdown.Toggle
+              variant="link"
+              id="link-access-dropdown dropdown-toggle-button"
+            >
+              {block.value.access}
+            </Dropdown.Toggle>
+            <Dropdown.Menu
+              className="border-0"
+              style={{
+                boxShadow: '0 8px 16px 0 rgba(5, 0, 56, 0.12)',
+              }}
+            >
+              {block.accessTypes.map((accessType: IDropdownOptions) => {
+                return (
+                  <Dropdown.Item
+                    key={accessType.key}
+                    onClick={() => dispatchDropdownAction(accessType.key)}
+                  >
+                    {accessType.value}
+                  </Dropdown.Item>
+                );
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
         </Col>
         <Col md="3" sm="3">
           <Button onClick={() => dispatchButtonClick()} block>
