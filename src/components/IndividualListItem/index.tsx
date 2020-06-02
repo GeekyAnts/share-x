@@ -1,7 +1,12 @@
 import React from 'react';
 import { ListGroup, Form, Row, Col, Dropdown, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
+import {
+  faLink,
+  faGlobe,
+  faUserFriends,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 import IBlock from '../../types/IBlock';
 import IDropdownOptions from '../../types/IDropdownOptions';
 import IAction from 'types/IAction';
@@ -47,11 +52,24 @@ const IndividualListItem: React.FC<IProps> = ({
     });
   };
 
+  const getIcon = () => {
+    switch (block.icon) {
+      case 'globe':
+        return <FontAwesomeIcon icon={faGlobe} />;
+      case 'userFriends':
+        return <FontAwesomeIcon icon={faUserFriends} />;
+      case 'user':
+        return <FontAwesomeIcon icon={faUser} />;
+      default:
+        return <FontAwesomeIcon icon={faLink} />;
+    }
+  };
+
   return (
     <ListGroup.Item className={className}>
       <Form.Group as={Row} className="mb-0">
         <Form.Label column md="1" sm="1">
-          <FontAwesomeIcon icon={faLink} />
+          {getIcon()}
         </Form.Label>
         <Col md="8" sm="8" className="d-flex align-items-center pl-0">
           {block.caption}

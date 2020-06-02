@@ -5,6 +5,7 @@ import {
   faLink,
   faGlobe,
   faUserFriends,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import IBlock from '../../types/IBlock';
 import IDropdownOptions from '../../types/IDropdownOptions';
@@ -57,6 +58,8 @@ const GroupListItem: React.FC<IProps> = ({
         return <FontAwesomeIcon icon={faGlobe} />;
       case 'userFriends':
         return <FontAwesomeIcon icon={faUserFriends} />;
+      case 'user':
+        return <FontAwesomeIcon icon={faUser} />;
       default:
         return <FontAwesomeIcon icon={faLink} />;
     }
