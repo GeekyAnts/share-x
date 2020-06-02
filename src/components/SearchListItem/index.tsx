@@ -44,6 +44,7 @@ const SearchListItem: React.FC<IProps> = ({
       type: 'BUTTON_CLICK',
       payload: {
         blockId: block.id,
+        value: block.value.selected,
       },
     });
   };
