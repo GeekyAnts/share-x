@@ -92,6 +92,7 @@ const GroupListItem: React.FC<IProps> = ({
                   <Dropdown.Item
                     key={accessType.key}
                     onClick={() => dispatchDropdownAction(accessType.value)}
+                    style={accessType.style ? { ...accessType.style } : {}}
                   >
                     {accessType.value}
                   </Dropdown.Item>

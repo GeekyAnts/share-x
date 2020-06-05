@@ -103,6 +103,7 @@ const SearchListItem: React.FC<IProps> = ({
                   <Dropdown.Item
                     key={accessType.key}
                     onClick={() => dispatchDropdownAction(accessType.key)}
+                    style={accessType.style ? { ...accessType.style } : {}}
                   >
                     {accessType.value}
                   </Dropdown.Item>
