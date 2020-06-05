@@ -26,7 +26,7 @@ const defaultValue: IValue = {
         {
           key: 'no_access',
           value: 'No access',
-          style:{color:"red"}
+          style: { color: 'red' },
         },
       ],
       value: {
@@ -63,7 +63,7 @@ const defaultValue: IValue = {
         {
           key: 'no_access',
           value: 'No access',
-          style:{color:"red"}
+          style: { color: 'red' },
         },
       ],
       inviteLink: true,
@@ -91,10 +91,10 @@ const defaultValue: IValue = {
           key: 'no_access',
           value: 'No access',
         },
-         {
+        {
           key: 'remove',
           value: 'Remove',
-          style:{color:"red"}
+          style: { color: 'red' },
         },
       ],
       inviteLink: false,
@@ -122,10 +122,9 @@ const defaultValue: IValue = {
           value: 'No access',
         },
         {
-          key:"remove",
-          value:"Remove",
-       
-        }
+          key: 'remove',
+          value: 'Remove',
+        },
       ],
       inviteLink: false,
       value: {
@@ -139,13 +138,15 @@ const App = () => {
   const [value, setValue] = React.useState(defaultValue);
   const [show, setShow] = React.useState(false);
 
-  const searchRenderer = (option: any) =>{
-   return  {label:`${option.firstName} (${option.lastName})`,value:option.firstName};
-  }
+  const searchRenderer = (option: any) => {
+    return {
+      label: `${option.firstName} (${option.lastName})`,
+      value: option.firstName,
+    };
+  };
   const onAction = (action: IAction) => {
     setValue(reduce(value, action));
   };
-
 
   return (
     <div>

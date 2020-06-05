@@ -3,13 +3,14 @@ import { Modal } from 'react-bootstrap';
 import OptionList from '../../components/OptionList';
 import IValue from '../../types/IValue';
 import IAction from '../../types/IAction';
+import ISearchRenderer from '../../types/ISearchRenderer';
 
 interface IProps {
   value: IValue;
   show: boolean;
   onAction: (action: IAction) => void;
   onHide: () => void;
-  searchRenderer?: (option: any) => string;
+  searchRenderer?: (option: any) => ISearchRenderer;
 }
 
 const ShareDialog: React.FC<IProps> = ({
@@ -17,7 +18,7 @@ const ShareDialog: React.FC<IProps> = ({
   show,
   onAction,
   onHide,
-  searchRenderer = (option: any) => `${option}`,
+  searchRenderer,
 }) => {
   const filteredBlocks =
     value && value.blocks && Array.isArray(value.blocks)
@@ -29,6 +30,12 @@ const ShareDialog: React.FC<IProps> = ({
         )
       : [];
 
+  const searchRendererFunction = searchRenderer
+    ? searchRenderer
+    : (option: any) => {
+        return { label: option, value: option };
+      };
+
   return (
     <>
       <Modal onHide={() => onHide()} show={show} style={{ minWidth: '620px' }}>
@@ -37,7 +44,7 @@ const ShareDialog: React.FC<IProps> = ({
             <OptionList
               onAction={onAction}
               blocks={filteredBlocks}
-              searchRenderer={searchRenderer}
+              searchRenderer={searchRendererFunction}
             />
           </Modal.Body>
         </Modal.Dialog>

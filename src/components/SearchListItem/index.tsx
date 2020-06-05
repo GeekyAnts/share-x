@@ -6,11 +6,12 @@ import IAction from '../../types/IAction';
 import IDropdownOptions from '../../types/IDropdownOptions';
 import getDropdownValue from '../../utilities/getDropdownValue';
 import CreatableSelect from 'react-select/creatable';
+import ISearchRenderer from '../../types/ISearchRenderer';
 
 interface IProps {
   block: IBlock;
   onAction: (action: IAction) => void;
-  searchRenderer: (option: any) => string;
+  searchRenderer: (option: any) => ISearchRenderer;
   noUpBorder?: boolean;
   noDownBorder?: boolean;
 }
@@ -68,17 +69,12 @@ const SearchListItem: React.FC<IProps> = ({
     });
   };
 
-   let options=[];
-    if(block.searchRecords)
-    {
-    for(let record of block.searchRecords)
-    {
+  let options = [];
+  if (block.searchRecords) {
+    for (let record of block.searchRecords) {
       options.push(searchRenderer(record));
     }
-    }
-   
-
-  
+  }
 
   return (
     <ListGroup.Item className={className}>
@@ -88,18 +84,15 @@ const SearchListItem: React.FC<IProps> = ({
         </Form.Label>
         <Col md="5" sm="5" className="px-0">
           {block.value && block.value.selected ? (
-             <CreatableSelect
+            <CreatableSelect
               components={components}
               isClearable
               isMulti
               options={options}
-              onChange={(selected:any) => dispatchSelectAction(selected)}
-             
-              // styles={styles}
+              onChange={(selected: any) => dispatchSelectAction(selected)}
               placeholder="Enter emails"
               value={block.value.selected}
             />
-            
           ) : null}
         </Col>
         <Col md="3" sm="3">

@@ -5,10 +5,11 @@ import IAction from '../../types/IAction';
 import SearchListItem from '../SearchListItem';
 import GroupListItem from '../GroupListItem';
 import IndividualListItem from '../IndividualListItem';
+import ISearchRenderer from '../../types/ISearchRenderer';
 
 interface IProps {
   blocks: Array<IBlock>;
-  searchRenderer: (option: any) => string;
+  searchRenderer: (option: any) => ISearchRenderer;
   onAction: (action: IAction) => void;
 }
 
