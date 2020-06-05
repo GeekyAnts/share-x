@@ -50,6 +50,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@types/react-bootstrap-typeahead": "^3.4.6",
+    "@types/react-select": "^3.0.13",
     "components": "^0.1.0",
     "react-bootstrap-typeahead": "^5.0.0-rc.1",
     "react-select": "^3.1.0"

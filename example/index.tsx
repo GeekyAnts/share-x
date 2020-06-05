@@ -139,9 +139,9 @@ const App = () => {
   const [value, setValue] = React.useState(defaultValue);
   const [show, setShow] = React.useState(false);
 
-  const searchRenderer = (option: any) =>
-    `${option.firstName} (${option.lastName})`;
-
+  const searchRenderer = (option: any) =>{
+   return  {label:`${option.firstName} (${option.lastName})`,value:option.firstName};
+  }
   const onAction = (action: IAction) => {
     setValue(reduce(value, action));
   };

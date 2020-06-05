@@ -1,11 +1,11 @@
 import React from 'react';
 import { ListGroup, Form, Row, Col, Button, Dropdown } from 'react-bootstrap';
-import { Typeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import IBlock from '../../types/IBlock';
 import IAction from '../../types/IAction';
 import IDropdownOptions from '../../types/IDropdownOptions';
 import getDropdownValue from '../../utilities/getDropdownValue';
+import CreatableSelect from 'react-select/creatable';
 
 interface IProps {
   block: IBlock;
@@ -30,6 +30,10 @@ const SearchListItem: React.FC<IProps> = ({
   } else {
     className += ' py-4';
   }
+
+  const components = {
+    DropdownIndicator: null,
+  };
 
   const dispatchSelectAction = (selected: any) => {
     onAction({
@@ -64,6 +68,18 @@ const SearchListItem: React.FC<IProps> = ({
     });
   };
 
+   let options=[];
+    if(block.searchRecords)
+    {
+    for(let record of block.searchRecords)
+    {
+      options.push(searchRenderer(record));
+    }
+    }
+   
+
+  
+
   return (
     <ListGroup.Item className={className}>
       <Form.Group as={Row}>
@@ -72,16 +88,18 @@ const SearchListItem: React.FC<IProps> = ({
         </Form.Label>
         <Col md="5" sm="5" className="px-0">
           {block.value && block.value.selected ? (
-            <Typeahead
-              id={'typeahead-' + block.id}
-              labelKey={searchRenderer}
-              selected={block.value.selected}
-              onChange={selected => dispatchSelectAction(selected)}
-              filterBy={block.filterBy ? block.filterBy : []}
-              multiple
-              options={block.searchRecords ? block.searchRecords : []}
+             <CreatableSelect
+              components={components}
+              isClearable
+              isMulti
+              options={options}
+              onChange={(selected:any) => dispatchSelectAction(selected)}
+             
+              // styles={styles}
               placeholder="Enter emails"
+              value={block.value.selected}
             />
+            
           ) : null}
         </Col>
         <Col md="3" sm="3">
