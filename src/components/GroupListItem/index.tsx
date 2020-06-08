@@ -72,7 +72,7 @@ const GroupListItem: React.FC<IProps> = ({
         <Form.Label column md="1" sm="1">
           {getIcon()}
         </Form.Label>
-        <Col md="8" sm="8" className="d-flex align-items-center pl-0">
+        <Col md="7" sm="7" className="d-flex align-items-center pl-0">
           {block.caption}
           <Dropdown>
             <Dropdown.Toggle
@@ -101,7 +101,7 @@ const GroupListItem: React.FC<IProps> = ({
             </Dropdown.Menu>
           </Dropdown>
         </Col>
-        <Col md="3" sm="3" className="d-flex justify-content-end">
+        <Col md="4" sm="4" className="d-flex justify-content-end">
           {block.inviteLink ? (
             <Button
               variant="primary"
