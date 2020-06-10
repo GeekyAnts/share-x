@@ -37,6 +37,7 @@ const SearchListItem: React.FC<IProps> = ({
   };
 
   const dispatchSelectAction = (selected: any) => {
+    if (selected === null) selected = [];
     onAction({
       type: 'CHANGE_SELECTION',
       payload: {
