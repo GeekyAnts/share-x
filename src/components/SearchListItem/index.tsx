@@ -49,7 +49,7 @@ const SearchListItem: React.FC<IProps> = ({
 
   const dispatchButtonClick = () => {
     onAction({
-      type: 'BUTTON_CLICK',
+      type: 'INVITE_ARBITRARY_USER',
       payload: {
         blockId: block.id,
         value: {
