@@ -91,7 +91,7 @@ const GroupListItem: React.FC<IProps> = ({
                 return (
                   <Dropdown.Item
                     key={accessType.key}
-                    onClick={() => dispatchDropdownAction(accessType.value)}
+                    onClick={() => dispatchDropdownAction(accessType.key)}
                     style={accessType.style ? { ...accessType.style } : {}}
                   >
                     {accessType.value}
@@ -101,7 +101,7 @@ const GroupListItem: React.FC<IProps> = ({
             </Dropdown.Menu>
           </Dropdown>
         </Col>
-        <Col md="4" sm="4" className="d-flex justify-content-end ">
+        <Col md="4" sm="4" className="d-flex justify-content-end">
           {block.inviteLink ? (
             <Button
               variant="primary"
