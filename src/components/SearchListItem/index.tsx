@@ -1,12 +1,12 @@
-import React from "react";
-import { ListGroup, Form, Row, Col, Button, Dropdown } from "react-bootstrap";
-import "react-bootstrap-typeahead/css/Typeahead.css";
-import IBlock from "../../types/IBlock";
-import IAction from "../../types/IAction";
-import IDropdownOptions from "../../types/IDropdownOptions";
-import getDropdownValue from "../../utilities/getDropdownValue";
-import CreatableSelect from "react-select/creatable";
-import ISearchRenderer from "../../types/ISearchRenderer";
+import React from 'react';
+import { ListGroup, Form, Row, Col, Button, Dropdown } from 'react-bootstrap';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
+import IBlock from '../../types/IBlock';
+import IAction from '../../types/IAction';
+import IDropdownOptions from '../../types/IDropdownOptions';
+import getDropdownValue from '../../utilities/getDropdownValue';
+import CreatableSelect from 'react-select/creatable';
+import ISearchRenderer from '../../types/ISearchRenderer';
 
 interface IProps {
   block: IBlock;
@@ -27,52 +27,52 @@ const SearchListItem: React.FC<IProps> = ({
   searchRenderer,
   noUpBorder = false,
   noDownBorder = false,
-  validationCallback
+  validationCallback,
 }) => {
-  let className = "border-left-0 border-right-0 px-0 ";
+  let className = 'border-left-0 border-right-0 px-0 ';
   if (!noUpBorder) {
-    className += "border-top-0 pt-2 pb-0";
+    className += 'border-top-0 pt-2 pb-0';
   } else if (!noDownBorder) {
-    className += "border-bottom-0 pt-3";
+    className += 'border-bottom-0 pt-3';
   } else {
-    className += " py-3";
+    className += ' py-3';
   }
 
   const components = {
-    DropdownIndicator: null
+    DropdownIndicator: null,
   };
 
   const dispatchSelectAction = (selected: any) => {
     if (selected === null) selected = [];
     onAction({
-      type: "CHANGE_SELECTION",
+      type: 'CHANGE_SELECTION',
       payload: {
         blockId: block.id,
-        value: selected
-      }
+        value: selected,
+      },
     });
   };
 
   const dispatchButtonClick = () => {
     onAction({
-      type: "INVITE_ARBITRARY_USER",
+      type: 'INVITE_ARBITRARY_USER',
       payload: {
         blockId: block.id,
         value: {
           selected: block.value.selected,
-          access: block.value.access
-        }
-      }
+          access: block.value.access,
+        },
+      },
     });
   };
 
   const dispatchDropdownAction = (value: any) => {
     onAction({
-      type: "DROPDOWN_CHANGE",
+      type: 'DROPDOWN_CHANGE',
       payload: {
         blockId: block.id,
-        value
-      }
+        value,
+      },
     });
   };
 
@@ -86,19 +86,19 @@ const SearchListItem: React.FC<IProps> = ({
     option: (styles: any) => {
       return {
         ...styles,
-        border: "none!important",
+        border: 'none!important',
 
-        ":hover": {
-          ...styles[":hover"],
-          backgroundColor: "#7252D3",
-          color: "#fff"
-        }
+        ':hover': {
+          ...styles[':hover'],
+          backgroundColor: '#7252D3',
+          color: '#fff',
+        },
       };
     },
     control: () => ({
       // none of react-select's styles are passed to <Control />
-      border: "none"
-    })
+      border: 'none',
+    }),
   };
 
   return (
@@ -134,7 +134,7 @@ const SearchListItem: React.FC<IProps> = ({
             <Dropdown.Menu
               className="border-0"
               style={{
-                boxShadow: "0 8px 16px 0 rgba(5, 0, 56, 0.12)"
+                boxShadow: '0 8px 16px 0 rgba(5, 0, 56, 0.12)',
               }}
             >
               {block.accessTypes.map((accessType: IDropdownOptions) => {
@@ -153,7 +153,7 @@ const SearchListItem: React.FC<IProps> = ({
         </Col>
         <Col md="4" sm="4" className="mt-1">
           <Button onClick={() => dispatchButtonClick()} block>
-            {block.buttonText ? block.buttonText : ""}
+            {block.buttonText ? block.buttonText : ''}
           </Button>
         </Col>
       </Form.Group>
