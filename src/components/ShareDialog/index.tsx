@@ -1,9 +1,9 @@
-import * as React from "react";
-import { Modal } from "react-bootstrap";
-import OptionList from "../../components/OptionList";
-import IValue from "../../types/IValue";
-import IAction from "../../types/IAction";
-import ISearchRenderer from "../../types/ISearchRenderer";
+import * as React from 'react';
+import { Modal, Spinner } from 'react-bootstrap';
+import OptionList from '../../components/OptionList';
+import IValue from '../../types/IValue';
+import IAction from '../../types/IAction';
+import ISearchRenderer from '../../types/ISearchRenderer';
 
 interface IProps {
   value: IValue;
@@ -11,6 +11,7 @@ interface IProps {
   onAction: (action: IAction) => void;
   onHide: () => void;
   searchRenderer?: (option: any) => ISearchRenderer;
+  loading?: boolean;
   validationCallback?: (
     inputValue: any,
     selectValue: any,
@@ -24,15 +25,16 @@ const ShareDialog: React.FC<IProps> = ({
   onAction,
   onHide,
   searchRenderer,
-  validationCallback
+  loading,
+  validationCallback,
 }) => {
   const filteredBlocks =
     value && value.blocks && Array.isArray(value.blocks)
       ? value.blocks.filter(
           block =>
-            block.type === "search" ||
-            block.type === "group" ||
-            block.type === "sharedWith"
+            block.type === 'search' ||
+            block.type === 'group' ||
+            block.type === 'sharedWith'
         )
       : [];
 
@@ -48,9 +50,24 @@ const ShareDialog: React.FC<IProps> = ({
         return { label: option, value: option };
       };
 
+  const overlay = (
+    <div
+      className="h-100 w-100 d-flex justify-content-center align-items-center"
+      style={{
+        background: 'rgb(244,244,244)',
+        position: 'absolute',
+        opacity: 0.3,
+        zIndex: 10,
+      }}
+    >
+      <Spinner animation="border" role="status" />
+    </div>
+  );
+
   return (
     <>
       <Modal onHide={() => onHide()} show={show} >
+         {loading ? overlay : null}
         <Modal.Dialog className="my-0">
           <Modal.Body className="px-4 py-3">
             <OptionList

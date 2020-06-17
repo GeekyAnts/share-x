@@ -1,11 +1,11 @@
-import React from "react";
-import { ListGroup } from "react-bootstrap";
-import IBlock from "../../types/IBlock";
-import IAction from "../../types/IAction";
-import SearchListItem from "../SearchListItem";
-import GroupListItem from "../GroupListItem";
-import IndividualListItem from "../IndividualListItem";
-import ISearchRenderer from "../../types/ISearchRenderer";
+import React from 'react';
+import { ListGroup } from 'react-bootstrap';
+import IBlock from '../../types/IBlock';
+import IAction from '../../types/IAction';
+import SearchListItem from '../SearchListItem';
+import GroupListItem from '../GroupListItem';
+import IndividualListItem from '../IndividualListItem';
+import ISearchRenderer from '../../types/ISearchRenderer';
 
 interface IProps {
   blocks: Array<IBlock>;
@@ -22,12 +22,12 @@ const OptionList: React.FC<IProps> = ({
   blocks,
   onAction,
   searchRenderer,
-  validationCallback
+  validationCallback,
 }) => {
   return (
     <ListGroup>
       {blocks.map((block, index) => {
-        if (block.type === "search") {
+        if (block.type === 'search') {
           if (index === 0) {
             return (
               <SearchListItem
@@ -59,7 +59,7 @@ const OptionList: React.FC<IProps> = ({
               />
             );
           }
-        } else if (block.type === "group") {
+        } else if (block.type === 'group') {
           if (index === 0) {
             return (
               <GroupListItem
@@ -83,7 +83,7 @@ const OptionList: React.FC<IProps> = ({
               <GroupListItem onAction={onAction} key={block.id} block={block} />
             );
           }
-        } else if (block.type === "sharedWith") {
+        } else if (block.type === 'sharedWith') {
           if (index === 0) {
             return (
               <IndividualListItem

@@ -134,9 +134,9 @@ const defaultValue: IValue = {
   ],
 };
 
-const validateCreation=(inputValue,selectValue,selectOptions)=>{
+const validateCreation = (inputValue, selectValue, selectOptions) => {
   return true;
-}
+};
 const App = () => {
   const [value, setValue] = React.useState(defaultValue);
   const [show, setShow] = React.useState(false);
@@ -148,7 +148,6 @@ const App = () => {
     };
   };
 
-  
   const onAction = (action: IAction) => {
     setValue(reduce(value, action));
   };
@@ -168,8 +167,8 @@ const App = () => {
         onHide={() => setShow(!show)}
         onAction={onAction}
         searchRenderer={searchRenderer}
+        loading={false}
         validationCallback={validateCreation}
-        
       />
     </div>
   );
