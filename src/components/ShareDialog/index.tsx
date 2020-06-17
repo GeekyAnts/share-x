@@ -12,6 +12,11 @@ interface IProps {
   onHide: () => void;
   searchRenderer?: (option: any) => ISearchRenderer;
   loading?: boolean;
+  validationCallback?: (
+    inputValue: any,
+    selectValue: any,
+    selectOptions: any
+  ) => boolean;
 }
 
 const ShareDialog: React.FC<IProps> = ({
@@ -21,6 +26,7 @@ const ShareDialog: React.FC<IProps> = ({
   onHide,
   searchRenderer,
   loading,
+  validationCallback,
 }) => {
   const filteredBlocks =
     value && value.blocks && Array.isArray(value.blocks)
@@ -31,6 +37,12 @@ const ShareDialog: React.FC<IProps> = ({
             block.type === 'sharedWith'
         )
       : [];
+
+  const validationCallbackFunction = validationCallback
+    ? validationCallback
+    : () => {
+        return true;
+      };
 
   const searchRendererFunction = searchRenderer
     ? searchRenderer
@@ -62,6 +74,7 @@ const ShareDialog: React.FC<IProps> = ({
               onAction={onAction}
               blocks={filteredBlocks}
               searchRenderer={searchRendererFunction}
+              validationCallback={validationCallbackFunction}
             />
           </Modal.Body>
         </Modal.Dialog>

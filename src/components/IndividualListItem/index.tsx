@@ -28,9 +28,9 @@ const IndividualListItem: React.FC<IProps> = ({
   if (noUpBorder) {
     className += 'border-top-0 pt-2 pb-0';
   } else if (noDownBorder) {
-    className += 'border-bottom-0 pt-4';
+    className += 'border-bottom-0 pt-3';
   } else {
-    className += ' py-4';
+    className += ' py-3';
   }
 
   const dispatchDropdownAction = (value: string) => {
@@ -68,7 +68,7 @@ const IndividualListItem: React.FC<IProps> = ({
   return (
     <ListGroup.Item className={className}>
       <Form.Group as={Row} className="mb-0">
-        <Form.Label column md="1" sm="1">
+        <Form.Label column md="1" sm="1" className="mr-1">
           {getIcon()}
         </Form.Label>
         <Col md="8" sm="8" className="d-flex align-items-center pl-0">
@@ -104,7 +104,7 @@ const IndividualListItem: React.FC<IProps> = ({
           {block.inviteLink ? (
             <Button
               variant="primary"
-              size="sm"
+              size="lg"
               onClick={() => dispatchCopyLinkAction()}
             >
               Copy invite link
