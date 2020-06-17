@@ -111,7 +111,7 @@ const SearchListItem: React.FC<IProps> = ({
           {block.value && block.value.selected ? (
             <CreatableSelect
               components={components}
-              isClearable
+              isClearable={false}
               isMulti
               options={options}
               onChange={(selected: any) => dispatchSelectAction(selected)}
