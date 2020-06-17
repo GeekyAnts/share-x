@@ -17,7 +17,7 @@ const defaultValue: IValue = {
       accessTypes: [
         {
           key: 'Read',
-          value: 'read',
+          value: 'Read',
         },
         {
           key: 'can_edit',
@@ -53,7 +53,7 @@ const defaultValue: IValue = {
 
       accessTypes: [
         {
-          key: 'read',
+          key: 'Read',
           value: 'Read',
         },
         {
@@ -80,7 +80,7 @@ const defaultValue: IValue = {
 
       accessTypes: [
         {
-          key: 'read',
+          key: 'Read',
           value: 'Read',
         },
         {
@@ -110,7 +110,7 @@ const defaultValue: IValue = {
       description: '',
       accessTypes: [
         {
-          key: 'read',
+          key: 'Read',
           value: 'Read',
         },
         {
@@ -134,6 +134,9 @@ const defaultValue: IValue = {
   ],
 };
 
+const validateCreation=(inputValue,selectValue,selectOptions)=>{
+  return true;
+}
 const App = () => {
   const [value, setValue] = React.useState(defaultValue);
   const [show, setShow] = React.useState(false);
@@ -144,6 +147,8 @@ const App = () => {
       value: option.firstName,
     };
   };
+
+  
   const onAction = (action: IAction) => {
     setValue(reduce(value, action));
   };
@@ -163,6 +168,8 @@ const App = () => {
         onHide={() => setShow(!show)}
         onAction={onAction}
         searchRenderer={searchRenderer}
+        validationCallback={validateCreation}
+        
       />
     </div>
   );
