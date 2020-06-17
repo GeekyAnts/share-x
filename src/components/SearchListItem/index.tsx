@@ -101,9 +101,9 @@ const SearchListItem: React.FC<IProps> = ({
     }),
   };
 
-  let selectedValuesLength=0;
-  if(block&&block.value&&block.value.selected){
-    selectedValuesLength=block.value.selected.length
+  let selectedValuesLength = 0;
+  if (block && block.value && block.value.selected) {
+    selectedValuesLength = block.value.selected.length;
   }
 
   return (
@@ -112,7 +112,7 @@ const SearchListItem: React.FC<IProps> = ({
         <Form.Label column md="1" sm="1">
           <strong>{block.caption}</strong>
         </Form.Label>
-        <Col  className="px-0" md={selectedValuesLength>0?"4":"10"}>
+        <Col className="px-0" md={selectedValuesLength > 0 ? '4' : '10'}>
           {block.value && block.value.selected ? (
             <CreatableSelect
               components={components}
@@ -128,42 +128,43 @@ const SearchListItem: React.FC<IProps> = ({
             />
           ) : null}
         </Col>
-        {selectedValuesLength>0?
-        
-        <Col md="3" sm="3" className="mt-1 pl-0 text-right">
-          <Dropdown>
-            <Dropdown.Toggle
-              variant="link"
-              id="link-access-dropdown dropdown-toggle-button"
-            >
-              {getDropdownValue(block, block.value.access)}
-            </Dropdown.Toggle>
-            <Dropdown.Menu
-              className="border-0"
-              style={{
-                boxShadow: '0 8px 16px 0 rgba(5, 0, 56, 0.12)',
-              }}
-            >
-              {block.accessTypes.map((accessType: IDropdownOptions) => {
-                return (
-                  <Dropdown.Item
-                    key={accessType.key}
-                    onClick={() => dispatchDropdownAction(accessType.key)}
-                    style={accessType.style ? { ...accessType.style } : {}}
-                  >
-                    {accessType.value}
-                  </Dropdown.Item>
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Col>:null}
-        {selectedValuesLength>0?
-        <Col md="4" sm="4" className="mt-1">
-          <Button onClick={() => dispatchButtonClick()} block className="p-2">
-            {block.buttonText ? block.buttonText : ""}
-          </Button>
-        </Col>:null}
+        {selectedValuesLength > 0 ? (
+          <Col md="3" sm="3" className="mt-1 pl-0 text-right">
+            <Dropdown>
+              <Dropdown.Toggle
+                variant="link"
+                id="link-access-dropdown dropdown-toggle-button"
+              >
+                {getDropdownValue(block, block.value.access)}
+              </Dropdown.Toggle>
+              <Dropdown.Menu
+                className="border-0"
+                style={{
+                  boxShadow: '0 8px 16px 0 rgba(5, 0, 56, 0.12)',
+                }}
+              >
+                {block.accessTypes.map((accessType: IDropdownOptions) => {
+                  return (
+                    <Dropdown.Item
+                      key={accessType.key}
+                      onClick={() => dispatchDropdownAction(accessType.key)}
+                      style={accessType.style ? { ...accessType.style } : {}}
+                    >
+                      {accessType.value}
+                    </Dropdown.Item>
+                  );
+                })}
+              </Dropdown.Menu>
+            </Dropdown>
+          </Col>
+        ) : null}
+        {selectedValuesLength > 0 ? (
+          <Col md="4" sm="4" className="mt-1">
+            <Button onClick={() => dispatchButtonClick()} block className="p-2">
+              {block.buttonText ? block.buttonText : ''}
+            </Button>
+          </Col>
+        ) : null}
       </Form.Group>
     </ListGroup.Item>
   );

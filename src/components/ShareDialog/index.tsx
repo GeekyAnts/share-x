@@ -66,18 +66,23 @@ const ShareDialog: React.FC<IProps> = ({
 
   return (
     <>
-      <Modal onHide={() => onHide()} show={show} >
-         {loading ? overlay : null}
-        <Modal.Dialog className="my-0">
-          <Modal.Body className="px-4 py-3">
-            <OptionList
-              onAction={onAction}
-              blocks={filteredBlocks}
-              searchRenderer={searchRendererFunction}
-              validationCallback={validationCallbackFunction}
-            />
-          </Modal.Body>
-        </Modal.Dialog>
+      <Modal onHide={() => onHide()} show={show}>
+        {loading ? (
+          <div style={{ height: '100%', width: '100%', minHeight: '200px' }}>
+            {overlay}
+          </div>
+        ) : (
+          <Modal.Dialog className="my-0">
+            <Modal.Body className="px-4 py-3">
+              <OptionList
+                onAction={onAction}
+                blocks={filteredBlocks}
+                searchRenderer={searchRendererFunction}
+                validationCallback={validationCallbackFunction}
+              />
+            </Modal.Body>
+          </Modal.Dialog>
+        )}
       </Modal>
     </>
   );

@@ -167,7 +167,7 @@ const App = () => {
         onHide={() => setShow(!show)}
         onAction={onAction}
         searchRenderer={searchRenderer}
-        loading={false}
+        loading={true}
         validationCallback={validateCreation}
       />
     </div>
