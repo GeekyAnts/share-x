@@ -69,12 +69,14 @@ const GroupListItem: React.FC<IProps> = ({
   return (
     <ListGroup.Item className={className}>
       <Form.Group as={Row} className="mb-0">
-        <Form.Label column md="1" sm="1">
-          {getIcon()}
-        </Form.Label>
+       
+          <Form.Label column md="1" sm="1">
+            {getIcon()}
+          </Form.Label>
+      
         <Col md="7" sm="7" className="d-flex align-items-center pl-0">
           {block.caption}
-          <Dropdown>
+          <Dropdown className="ml-2">
             <Dropdown.Toggle
               variant="link"
               id="link-access-dropdown dropdown-toggle-button"
@@ -106,8 +108,8 @@ const GroupListItem: React.FC<IProps> = ({
             <Button
               variant="primary"
               size="sm"
-              style={{ height: "90%" }}
-              className="px-5"
+             
+              className="px-5 p-2"
               onClick={() => dispatchCopyLinkAction()}
             >
               Copy invite link

@@ -97,9 +97,16 @@ const SearchListItem: React.FC<IProps> = ({
     },
     control: () => ({
       // none of react-select's styles are passed to <Control />
+      
       border: "none"
-    })
+    }),
+    
   };
+
+  let selectedValuesLength=0;
+  if(block&&block.value&&block.value.selected){
+    selectedValuesLength=block.value.selected.length
+  }
 
   return (
     <ListGroup.Item className={className}>
@@ -107,23 +114,25 @@ const SearchListItem: React.FC<IProps> = ({
         <Form.Label column md="1" sm="1">
           <strong>{block.caption}</strong>
         </Form.Label>
-        <Col md="4" sm="4" className="px-0">
+        <Col  className="px-0" md={selectedValuesLength>0?"4":"10"}>
           {block.value && block.value.selected ? (
             <CreatableSelect
               components={components}
-              isClearable
+              isClearable={false}
               isMulti
               options={options}
               onChange={(selected: any) => dispatchSelectAction(selected)}
               placeholder="Enter emails"
               value={block.value.selected}
-              className="border-0"
+              className="px-0"
               styles={selectStyles}
               isValidNewOption={validationCallback}
             />
           ) : null}
         </Col>
-        <Col md="3" sm="3" className="mt-1 pl-0">
+        {selectedValuesLength>0?
+        
+        <Col md="3" sm="3" className="mt-1 pl-0 text-right">
           <Dropdown>
             <Dropdown.Toggle
               variant="link"
@@ -150,12 +159,13 @@ const SearchListItem: React.FC<IProps> = ({
               })}
             </Dropdown.Menu>
           </Dropdown>
-        </Col>
+        </Col>:null}
+        {selectedValuesLength>0?
         <Col md="4" sm="4" className="mt-1">
-          <Button onClick={() => dispatchButtonClick()} block>
+          <Button onClick={() => dispatchButtonClick()} block className="p-2">
             {block.buttonText ? block.buttonText : ""}
           </Button>
-        </Col>
+        </Col>:null}
       </Form.Group>
     </ListGroup.Item>
   );

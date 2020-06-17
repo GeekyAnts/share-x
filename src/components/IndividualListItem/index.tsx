@@ -73,7 +73,7 @@ const IndividualListItem: React.FC<IProps> = ({
         </Form.Label>
         <Col md="8" sm="8" className="d-flex align-items-center pl-0">
           {block.caption}
-          <Dropdown>
+          <Dropdown className="ml-2">
             <Dropdown.Toggle
               variant="link"
               id="link-access-dropdown dropdown-toggle-button"
@@ -106,6 +106,7 @@ const IndividualListItem: React.FC<IProps> = ({
               variant="primary"
               size="lg"
               onClick={() => dispatchCopyLinkAction()}
+              className="p-2"
             >
               Copy invite link
             </Button>

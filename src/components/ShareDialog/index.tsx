@@ -50,7 +50,7 @@ const ShareDialog: React.FC<IProps> = ({
 
   return (
     <>
-      <Modal onHide={() => onHide()} show={show} style={{ minWidth: "620px" }}>
+      <Modal onHide={() => onHide()} show={show} >
         <Modal.Dialog className="my-0">
           <Modal.Body className="px-4 py-3">
             <OptionList
