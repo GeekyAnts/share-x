@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, Spinner } from 'react-bootstrap';
 import OptionList from '../../components/OptionList';
 import IValue from '../../types/IValue';
 import IAction from '../../types/IAction';
@@ -11,6 +11,7 @@ interface IProps {
   onAction: (action: IAction) => void;
   onHide: () => void;
   searchRenderer?: (option: any) => ISearchRenderer;
+  loading?: boolean;
 }
 
 const ShareDialog: React.FC<IProps> = ({
@@ -19,6 +20,7 @@ const ShareDialog: React.FC<IProps> = ({
   onAction,
   onHide,
   searchRenderer,
+  loading,
 }) => {
   const filteredBlocks =
     value && value.blocks && Array.isArray(value.blocks)
@@ -36,9 +38,24 @@ const ShareDialog: React.FC<IProps> = ({
         return { label: option, value: option };
       };
 
+  const overlay = (
+    <div
+      className="h-100 w-100 d-flex justify-content-center align-items-center"
+      style={{
+        background: 'rgb(244,244,244)',
+        position: 'absolute',
+        opacity: 0.3,
+        zIndex: 10,
+      }}
+    >
+      <Spinner animation="border" role="status" />
+    </div>
+  );
+
   return (
     <>
       <Modal onHide={() => onHide()} show={show} style={{ minWidth: '620px' }}>
+        {loading ? overlay : null}
         <Modal.Dialog className="my-0">
           <Modal.Body className="px-4 py-3">
             <OptionList

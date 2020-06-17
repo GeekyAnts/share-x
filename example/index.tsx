@@ -163,6 +163,7 @@ const App = () => {
         onHide={() => setShow(!show)}
         onAction={onAction}
         searchRenderer={searchRenderer}
+        loading={false}
       />
     </div>
   );
