@@ -135,7 +135,7 @@ const defaultValue: IValue = {
 };
 
 const validateCreation = (inputValue, selectValue, selectOptions) => {
-  return true;
+  return false;
 };
 const App = () => {
   const [value, setValue] = React.useState(defaultValue);
@@ -169,6 +169,8 @@ const App = () => {
         searchRenderer={searchRenderer}
         loading={false}
         validationCallback={validateCreation}
+        noOptionsMessage="This is a custom message"
+        
       />
     </div>
   );

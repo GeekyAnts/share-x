@@ -14,6 +14,7 @@ interface IProps {
   searchRenderer: (option: any) => ISearchRenderer;
   noUpBorder?: boolean;
   noDownBorder?: boolean;
+  noOptionsMessage:string
   validationCallback: (
     inputValue: any,
     selectValue: any,
@@ -27,6 +28,7 @@ const SearchListItem: React.FC<IProps> = ({
   searchRenderer,
   noUpBorder = false,
   noDownBorder = false,
+  noOptionsMessage="No Options",
   validationCallback,
 }) => {
   let className = 'border-left-0 border-right-0 px-0 ';
@@ -125,6 +127,9 @@ const SearchListItem: React.FC<IProps> = ({
               className="px-0"
               styles={selectStyles}
               isValidNewOption={validationCallback}
+              noOptionsMessage={()=>{
+                return noOptionsMessage
+              }}
             />
           ) : null}
         </Col>

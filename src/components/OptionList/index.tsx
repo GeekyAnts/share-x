@@ -11,6 +11,7 @@ interface IProps {
   blocks: Array<IBlock>;
   searchRenderer: (option: any) => ISearchRenderer;
   onAction: (action: IAction) => void;
+  noOptionsMessage:string;
   validationCallback: (
     inputValue: any,
     selectValue: any,
@@ -23,6 +24,7 @@ const OptionList: React.FC<IProps> = ({
   onAction,
   searchRenderer,
   validationCallback,
+  noOptionsMessage
 }) => {
   return (
     <ListGroup>
@@ -36,6 +38,8 @@ const OptionList: React.FC<IProps> = ({
                 key={block.id}
                 block={block}
                 validationCallback={validationCallback}
+                noOptionsMessage={noOptionsMessage}
+
               />
             );
           } else if (index === blocks.length - 1) {
@@ -46,6 +50,7 @@ const OptionList: React.FC<IProps> = ({
                 key={block.id}
                 block={block}
                 validationCallback={validationCallback}
+                noOptionsMessage={noOptionsMessage}
               />
             );
           } else {
@@ -56,6 +61,8 @@ const OptionList: React.FC<IProps> = ({
                 key={block.id}
                 block={block}
                 validationCallback={validationCallback}
+                noOptionsMessage={noOptionsMessage}
+
               />
             );
           }

@@ -5,6 +5,7 @@ import IValue from '../../types/IValue';
 import IAction from '../../types/IAction';
 import ISearchRenderer from '../../types/ISearchRenderer';
 
+
 interface IProps {
   value: IValue;
   show: boolean;
@@ -12,6 +13,7 @@ interface IProps {
   onHide: () => void;
   searchRenderer?: (option: any) => ISearchRenderer;
   loading?: boolean;
+  noOptionsMessage?:string;
   validationCallback?: (
     inputValue: any,
     selectValue: any,
@@ -25,6 +27,7 @@ const ShareDialog: React.FC<IProps> = ({
   onAction,
   onHide,
   searchRenderer,
+  noOptionsMessage="No Options",
   loading,
   validationCallback,
 }) => {
@@ -66,7 +69,7 @@ const ShareDialog: React.FC<IProps> = ({
 
   return (
     <>
-      <Modal onHide={() => onHide()} show={show} >
+      <Modal onHide={() => onHide()} show={show} style={{ fontSize:"110%" }}>
          {loading ? overlay : null}
         <Modal.Dialog className="my-0">
           <Modal.Body className="px-4 py-3">
@@ -75,6 +78,7 @@ const ShareDialog: React.FC<IProps> = ({
               blocks={filteredBlocks}
               searchRenderer={searchRendererFunction}
               validationCallback={validationCallbackFunction}
+              noOptionsMessage={noOptionsMessage}
             />
           </Modal.Body>
         </Modal.Dialog>
