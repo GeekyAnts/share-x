@@ -69,11 +69,10 @@ const GroupListItem: React.FC<IProps> = ({
   return (
     <ListGroup.Item className={className}>
       <Form.Group as={Row} className="mb-0">
-       
-          <Form.Label column md="1" sm="1">
-            {getIcon()}
-          </Form.Label>
-      
+        <Form.Label column md="1" sm="1">
+          {getIcon()}
+        </Form.Label>
+
         <Col md="7" sm="7" className="d-flex align-items-center pl-0">
           {block.caption}
           <Dropdown className="ml-2">
