@@ -20,9 +20,7 @@
     "react": ">=16"
   },
   "husky": {
-    "hooks": {
-     
-    }
+    "hooks": {}
   },
   "prettier": {
     "printWidth": 80,
